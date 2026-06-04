@@ -45,10 +45,13 @@
     }
 
     .responsive-video {
+      width: 100%;
       max-width: 100%;
+      aspect-ratio: 16 / 9; /* This forces the perfect YouTube dimensions */
       height: auto;
       display: block;
       margin: 10px auto;
+      border-radius: 10px; /* Added this to round the corners and match your other images */
     }
 
     .instagram-embed {
@@ -149,13 +152,14 @@
     <div class="box">
       <p><strong>Work Samples:</strong></p>
 
-      <!-- YouTube Videos -->
-      <iframe class="responsive-video" width="100%" height="315"
-        src="https://www.youtube.com/embed/D-fWjuT_QC4"
-        title="YouTube video player" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen></iframe>
-
+     <!-- YouTube Video -->
+      <iframe class="responsive-video" 
+        src="https://www.youtube.com/embed/D-fWjuT_QC4" 
+        title="YouTube video player" frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+      </iframe>
+      
    <video class="responsive-video" width="100%" controls style="border-radius: 10px; margin-top: 20px;">
   <source src="https://raw.githubusercontent.com/crowefex/Reportfolio/583cfbd186e2980c14cf42cb5d36643bb75e8e0b/0604%20(1).mp4" type="video/mp4">
   Your browser does not support the video tag.
