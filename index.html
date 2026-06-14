@@ -1,20 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio</title>
+  <title>Crowefex Portfolio</title>
   <style>
     body {
-      background: url("https://raw.githubusercontent.com/crowefex/Ptfo-assets/main/BG.png") no-repeat center center;
+      background: #0f172a url("https://raw.githubusercontent.com/crowefex/Ptfo-assets/main/BG.png") no-repeat center center fixed;
       background-size: cover;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
     }
 
     .banner {
       position: relative;
       width: 100%;
-      height: 50%;
+      height: auto;
+      min-height: 250px;
       background-size: cover;
       background-position: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .logo-circle {
@@ -22,70 +30,74 @@
       bottom: -40px;
       left: 50%;
       transform: translateX(-50%);
-      width: 80px;
-      height: 80px;
+      width: 90px;
+      height: 90px;
       border-radius: 50%;
       overflow: hidden;
-      border: 2px solid white;
+      border: 3px solid #e11d48;
       background: white;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      z-index: 10;
     }
 
     .logo-circle img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transform: translateY(-10px);
     }
 
     .responsive-img {
       max-width: 100%;
       height: auto;
       display: block;
-      margin: 10px auto;
+      margin: 0 auto;
     }
 
     .responsive-video {
       width: 100%;
       max-width: 100%;
-      aspect-ratio: 16 / 9; /* This forces the perfect YouTube dimensions */
+      aspect-ratio: 16 / 9;
       height: auto;
       display: block;
-      margin: 10px auto;
-      border-radius: 10px; /* Added this to round the corners and match your other images */
-    }
-
-    .instagram-embed {
-      display: flex;
-      justify-content: center;
-      margin-top: 30px;
+      margin: 20px auto;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .container {
       max-width: 800px;
       margin: 0 auto;
-      padding: 20px;
+      padding: 40px 20px;
       box-sizing: border-box;
       position: relative;
     }
 
+    /* Upgraded Box Design: Sleek dark glass with crimson border highlights */
     .box {
-      background: red;
-      color: white;
-      border-radius: 10px;
-      padding: 20px;
-      margin: 60px 0 20px;
-      transition: transform 0.3s ease;
-      cursor: pointer;
+      background: rgba(30, 41, 59, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      color: #f8fafc;
+      border-radius: 12px;
+      padding: 30px;
+      margin: 60px 0 30px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, border-color 0.3s ease;
     }
 
     .box:hover {
-      transform: scale(1.05);
+      transform: translateY(-5px);
+      border-color: #e11d48;
     }
 
     .box p {
-      margin: 0 0 10px;
-      font-size: 1.2em;
+      margin: 0 0 15px;
+      font-size: 1.3em;
       text-align: left;
+      color: #ffffff;
+      border-left: 4px solid #e11d48;
+      padding-left: 10px;
     }
 
     .box ul {
@@ -95,15 +107,75 @@
       margin: 0;
     }
 
+    .box li {
+      margin-bottom: 12px;
+      font-size: 1.1em;
+      color: #cbd5e1;
+      line-height: 1.5;
+    }
+
+    /* PURE CSS IMAGE SLIDER */
+    .slider-frame {
+      width: 100%;
+      height: 450px;
+      margin: 25px auto 10px;
+      overflow: hidden;
+      border-radius: 10px;
+      position: relative;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .slider-wrapper {
+      display: flex;
+      width: 300%; /* 3 images = 300% width */
+      height: 100%;
+      animation: slideLoop 15s infinite ease-in-out;
+    }
+
+    .slide {
+      width: 33.333%;
+      height: 100%;
+      position: relative;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Captions over the slider images */
+    .slide-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.85));
+      padding: 20px;
+      color: #fff;
+      font-size: 1em;
+      font-weight: 500;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+    }
+
+    /* Smooth looping animation logic for 3 slides */
+    @keyframes slideLoop {
+      0%, 28% { transform: translateX(0); }
+      33%, 61% { transform: translateX(-33.333%); }
+      66%, 94% { transform: translateX(-66.666%); }
+      100% { transform: translateX(0); }
+    }
+
+    /* FADE IN UP ANIMATIONS */
     .fade-in-up {
       opacity: 0;
-      animation: fadeInUp 1s forwards;
+      animation: fadeInUp 0.8s forwards;
     }
 
     @keyframes fadeInUp {
       from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(20px);
       }
       to {
         opacity: 1;
@@ -112,34 +184,39 @@
     }
 
     a {
-      color: white;
+      color: #fb7185;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    
+    a:hover {
+      color: #e11d48;
       text-decoration: underline;
     }
   </style>
 </head>
 <body>
+
   <div class="banner">
-    <img src="https://raw.githubusercontent.com/crowefex/Ptfo-assets/main/crowBB.png" class="responsive-img">  
+    <img src="https://raw.githubusercontent.com/crowefex/Ptfo-assets/main/crowBB.png" class="responsive-img" alt="Banner">  
     <div class="logo-circle">
-      <img src="https://raw.githubusercontent.com/crowefex/Ptfo-assets/main/crowfx.png" class="responsive-img">
+      <img src="https://raw.githubusercontent.com/crowefex/Ptfo-assets/main/crowfx.png" alt="Logo">
     </div>
   </div>
 
   <div class="container">
-    <!-- Introduction -->
     <div class="box">
       <ul>
-        <li class="fade-in-up">Hi there, I'm a cinematic editor and contemporary reels/TikTok editor who you're looking for.</li>
-        <li class="fade-in-up">I have edited some S-graded movies.</li>
-        <li class="fade-in-up">I do reels with contemporary effects.</li>
-        <li class="fade-in-up">I have knowledge in color grading and can trim raw footage into custom content without losing context.</li>
-        <li class="fade-in-up">I make good thumbnail images by the way.</li>
+        <li class="fade-in-up">Hi there, I'm the cinematic, contemporary Reels, and TikTok editor you've been looking for.</li>
+        <li class="fade-in-up">I have edited high-tier, S-graded content.</li>
+        <li class="fade-in-up">I craft fast-paced, high-retention reels with modern aesthetic visual effects.</li>
+        <li class="fade-in-up">I bring advanced knowledge in color grading and precision timing to trim raw footage flawlessly.</li>
+        <li class="fade-in-up">I also design high-click-through-rate custom thumbnails.</li>
       </ul>
     </div>
 
-    <!-- Contact -->
     <div class="box">
-      <p><strong>For Contact:</strong></p>
+      <p>For Contact</p>
       <ul>
         <li class="fade-in-up">Email: <a href="mailto:crowefex@gmail.com">crowefex@gmail.com</a></li>
         <li class="fade-in-up">Instagram: <a href="https://www.instagram.com/crow.efex?igsh=MTM2NGxqdXMzMzM5YQ==" target="_blank">@crow.efex</a></li>
@@ -148,11 +225,9 @@
       </ul>
     </div>
 
-    <!-- Work Samples -->
     <div class="box">
-      <p><strong>Work Samples:</strong></p>
+      <p>Work Samples</p>
 
-     <!-- YouTube Video -->
       <iframe class="responsive-video" 
         src="https://www.youtube.com/embed/D-fWjuT_QC4" 
         title="YouTube video player" frameborder="0" 
@@ -160,25 +235,40 @@
         allowfullscreen>
       </iframe>
       
-   <video class="responsive-video" width="100%" controls style="border-radius: 10px; margin-top: 20px;">
-  <source src="https://raw.githubusercontent.com/crowefex/Reportfolio/bcf976628ae565f4a7d1164d545cc8053d1ee951/Raja%20da.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-      <!-- Images -->
-      <img src="https://raw.githubusercontent.com/crowefex/Reportfolio/main/Gus efex.jpg" alt="Work Image 1" class="fade-in-up responsive-img" style="width: 100%; margin-top: 10px; border-radius: 10px;" />
+      <video class="responsive-video" controls>
+        <source src="https://raw.githubusercontent.com/crowefex/Reportfolio/bcf976628ae565f4a7d1164d545cc8053d1ee951/Raja%20da.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
 
-       <img src="https://raw.githubusercontent.com/crowefex/Ptfo-assets/main/Banner5.jpg" alt="Work Image 1" class="fade-in-up responsive-img" style="width: 100%; margin-top: 10px; border-radius: 10px;" />
+      <div class="slider-frame">
+        <div class="slider-wrapper">
+          <div class="slide">
+            <img src="http://googleusercontent.com/image_collection/image_retrieval/15426231903348483375" alt="Cinematic Narrative Concept">
+            <div class="slide-caption">Cinematic Dynamic Composition</div>
+          </div>
+          <div class="slide">
+            <img src="http://googleusercontent.com/image_collection/image_retrieval/7425187107392961713" alt="High Impact Visuals Concept">
+            <div class="slide-caption">High Retention & Contemporary Effects</div>
+          </div>
+          <div class="slide">
+            <img src="http://googleusercontent.com/image_collection/image_retrieval/18251758976558754439" alt="Color Grading Precision Concept">
+            <div class="slide-caption">Advanced Grading & Visual Atmospheres</div>
+          </div>
+        </div>
+      </div>
+
+      <img src="https://raw.githubusercontent.com/crowefex/Ptfo-assets/main/Banner5.jpg" alt="Work Showcase Banner" class="fade-in-up responsive-img" style="width: 100%; margin-top: 20px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.1);" />
     </div>
   </div>
 
   <script>
-    // Trigger fade-in-up animation on load
-    window.addEventListener('load', () => {
+    // Trigger fade-in-up animation smoothly on DOM content load
+    window.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('.fade-in-up').forEach(el => {
         el.classList.remove('fade-in-up');
         setTimeout(() => {
           el.classList.add('fade-in-up');
-        }, 10);
+        }, 15);
       });
     });
   </script>
