@@ -89,24 +89,24 @@
       margin: 0;
     }
 
-    /* --- ENHANCED SLIDER STYLES (NO CROPPING) --- */
+    /* --- ENHANCED SLIDER WITH NAVIGATION BUTTONS --- */
     .slider-frame {
       width: 100%;
       max-width: 100%;
-      aspect-ratio: 1 / 1; /* Match the exact 1:1 square ratio of your 1000x1000px assets */
+      aspect-ratio: 1 / 1; /* Perfect 1:1 format for your 1000x1000px assets */
       margin: 25px auto 10px;
       overflow: hidden;
       border-radius: 10px;
       position: relative;
       border: 2px solid white;
-      background-color: #000; /* Dark canvas backing for edge protection */
+      background-color: #000;
     }
 
     .slider-wrapper {
       display: flex;
       width: 300%;
       height: 100%;
-      animation: slideLoop 12s infinite ease-in-out;
+      transition: transform 0.5s ease-in-out; /* Smooth transition instead of infinite animation */
     }
 
     .slide {
@@ -118,7 +118,7 @@
     .slide img {
       width: 100%;
       height: 100%;
-      object-fit: contain; /* Changed from 'cover' to prevent cutting off height/width */
+      object-fit: contain;
       display: block;
     }
 
@@ -136,11 +136,40 @@
       text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
     }
 
-    @keyframes slideLoop {
-      0%, 28% { transform: translateX(0); }
-      33%, 61% { transform: translateX(-33.333%); }
-      66%, 94% { transform: translateX(-66.666%); }
-      100% { transform: translateX(0); }
+    /* Arrow button styling */
+    .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.5em;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, scale 0.2s;
+      user-select: none;
+      z-index: 5;
+    }
+
+    .nav-btn:hover {
+      background: rgba(255, 255, 255, 0.9);
+      color: black;
+      scale: 1.1;
+    }
+
+    .prev-btn {
+      left: 15px;
+    }
+
+    .next-btn {
+      right: 15px;
     }
     /* ------------------------------------------- */
 
@@ -215,9 +244,13 @@
         Your browser does not support the video tag.
       </video>
 
-      <!-- THREE-IMAGE SLIDER COMPONENT -->
+      <!-- THREE-IMAGE SLIDER COMPONENT WITH INTERACTIVE ARROWS -->
       <div class="slider-frame">
-        <div class="slider-wrapper">
+        <!-- Control Buttons -->
+        <div class="nav-btn prev-btn" id="prevSlide">&#10094;</div>
+        <div class="nav-btn next-btn" id="nextSlide">&#10095;</div>
+
+        <div class="slider-wrapper" id="sliderWrapper">
           <!-- Slide 1 -->
           <div class="slide">
             <img src="https://raw.githubusercontent.com/crowefex/Reportfolio/0ad3f8b2a1542699c59b46660eb2e286f5be3a42/final%20taira%20with%20watermark.png" alt="final taira with watermark">
@@ -242,10 +275,36 @@
   </div>
 
   <script>
+    // Slider functionality logic
+    const wrapper = document.getElementById('sliderWrapper');
+    const prevBtn = document.getElementById('prevSlide');
+    const nextBtn = document.getElementById('nextSlide');
+    
+    let currentIndex = 0;
+    const totalSlides = 3;
+
+    function updateSlider() {
+      // Moves the wrapper track left by 0%, 33.333%, or 66.666%
+      const percentage = -(currentIndex * 33.333);
+      wrapper.style.transform = `translateX(${percentage}%)`;
+    }
+
+    nextBtn.addEventListener('click', (e) => {
+      e.stopPropagation(); // Prevents the red box link structure from misfiring
+      currentIndex = (currentIndex + 1) % totalSlides; // Loops back to index 0 after the last slide
+      updateSlider();
+    });
+
+    prevBtn.addEventListener('click', (e) => {
+      e.stopPropagation(); 
+      currentIndex = (currentIndex - 1 + totalSlides) % totalSlides; // Loops around to the last item if clicked on index 0
+      updateSlider();
+    });
+
     // Trigger fade-in-up animation on load
     window.addEventListener('load', () => {
       document.querySelectorAll('.fade-in-up').forEach(el => {
-        el.classList.remove('fade-in-up');
+        el.classList.remove('.fade-in-up');
         setTimeout(() => {
           el.classList.add('fade-in-up');
         }, 10);
