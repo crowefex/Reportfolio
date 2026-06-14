@@ -1,28 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Crowefex Portfolio</title>
+  <title>Portfolio</title>
   <style>
     body {
-      background: #0f172a url("https://raw.githubusercontent.com/crowefex/Ptfo-assets/main/BG.png") no-repeat center center fixed;
+      background: url("https://raw.githubusercontent.com/crowefex/Ptfo-assets/main/BG.png") no-repeat center center;
       background-size: cover;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      margin: 0;
-      padding: 0;
     }
 
     .banner {
       position: relative;
       width: 100%;
-      height: auto;
-      min-height: 250px;
+      height: 50%;
       background-size: cover;
       background-position: center;
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
 
     .logo-circle {
@@ -30,27 +22,26 @@
       bottom: -40px;
       left: 50%;
       transform: translateX(-50%);
-      width: 90px;
-      height: 90px;
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
       overflow: hidden;
-      border: 3px solid #e11d48;
+      border: 2px solid white;
       background: white;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-      z-index: 10;
     }
 
     .logo-circle img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transform: translateY(-10px);
     }
 
     .responsive-img {
       max-width: 100%;
       height: auto;
       display: block;
-      margin: 0 auto;
+      margin: 10px auto;
     }
 
     .responsive-video {
@@ -59,45 +50,36 @@
       aspect-ratio: 16 / 9;
       height: auto;
       display: block;
-      margin: 20px auto;
+      margin: 10px auto;
       border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .container {
       max-width: 800px;
       margin: 0 auto;
-      padding: 40px 20px;
+      padding: 20px;
       box-sizing: border-box;
       position: relative;
     }
 
-    /* Upgraded Box Design: Sleek dark glass with crimson border highlights */
     .box {
-      background: rgba(30, 41, 59, 0.75);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      color: #f8fafc;
-      border-radius: 12px;
-      padding: 30px;
-      margin: 60px 0 30px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-      transition: transform 0.3s ease, border-color 0.3s ease;
+      background: red;
+      color: white;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 60px 0 20px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
     }
 
     .box:hover {
-      transform: translateY(-5px);
-      border-color: #e11d48;
+      transform: scale(1.05);
     }
 
     .box p {
-      margin: 0 0 15px;
-      font-size: 1.3em;
+      margin: 0 0 10px;
+      font-size: 1.2em;
       text-align: left;
-      color: #ffffff;
-      border-left: 4px solid #e11d48;
-      padding-left: 10px;
     }
 
     .box ul {
@@ -107,29 +89,24 @@
       margin: 0;
     }
 
-    .box li {
-      margin-bottom: 12px;
-      font-size: 1.1em;
-      color: #cbd5e1;
-      line-height: 1.5;
-    }
-
-    /* PURE CSS IMAGE SLIDER */
+    /* --- ENHANCED SLIDER STYLES (NO CROPPING) --- */
     .slider-frame {
       width: 100%;
-      height: 450px;
+      max-width: 100%;
+      aspect-ratio: 1 / 1; /* Match the exact 1:1 square ratio of your 1000x1000px assets */
       margin: 25px auto 10px;
       overflow: hidden;
       border-radius: 10px;
       position: relative;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 2px solid white;
+      background-color: #000; /* Dark canvas backing for edge protection */
     }
 
     .slider-wrapper {
       display: flex;
-      width: 300%; /* 3 images = 300% width */
+      width: 300%;
       height: 100%;
-      animation: slideLoop 15s infinite ease-in-out;
+      animation: slideLoop 12s infinite ease-in-out;
     }
 
     .slide {
@@ -141,41 +118,41 @@
     .slide img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain; /* Changed from 'cover' to prevent cutting off height/width */
+      display: block;
     }
 
-    /* Captions over the slider images */
     .slide-caption {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
-      background: linear-gradient(transparent, rgba(0,0,0,0.85));
-      padding: 20px;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+      padding: 25px 20px 20px;
       color: #fff;
-      font-size: 1em;
-      font-weight: 500;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+      font-size: 1.1em;
+      font-weight: bold;
+      text-align: center;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
     }
 
-    /* Smooth looping animation logic for 3 slides */
     @keyframes slideLoop {
       0%, 28% { transform: translateX(0); }
       33%, 61% { transform: translateX(-33.333%); }
       66%, 94% { transform: translateX(-66.666%); }
       100% { transform: translateX(0); }
     }
+    /* ------------------------------------------- */
 
-    /* FADE IN UP ANIMATIONS */
     .fade-in-up {
       opacity: 0;
-      animation: fadeInUp 0.8s forwards;
+      animation: fadeInUp 1s forwards;
     }
 
     @keyframes fadeInUp {
       from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(30px);
       }
       to {
         opacity: 1;
@@ -184,39 +161,34 @@
     }
 
     a {
-      color: #fb7185;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    
-    a:hover {
-      color: #e11d48;
+      color: white;
       text-decoration: underline;
     }
   </style>
 </head>
 <body>
-
   <div class="banner">
-    <img src="https://raw.githubusercontent.com/crowefex/Ptfo-assets/main/crowBB.png" class="responsive-img" alt="Banner">  
+    <img src="https://raw.githubusercontent.com/crowefex/Ptfo-assets/main/crowBB.png" class="responsive-img">  
     <div class="logo-circle">
-      <img src="https://raw.githubusercontent.com/crowefex/Ptfo-assets/main/crowfx.png" alt="Logo">
+      <img src="https://raw.githubusercontent.com/crowefex/Ptfo-assets/main/crowfx.png" class="responsive-img">
     </div>
   </div>
 
   <div class="container">
+    <!-- Introduction -->
     <div class="box">
       <ul>
-        <li class="fade-in-up">Hi there, I'm the cinematic, contemporary Reels, and TikTok editor you've been looking for.</li>
-        <li class="fade-in-up">I have edited high-tier, S-graded content.</li>
-        <li class="fade-in-up">I craft fast-paced, high-retention reels with modern aesthetic visual effects.</li>
-        <li class="fade-in-up">I bring advanced knowledge in color grading and precision timing to trim raw footage flawlessly.</li>
-        <li class="fade-in-up">I also design high-click-through-rate custom thumbnails.</li>
+        <li class="fade-in-up">Hi there, I'm a cinematic editor and contemporary reels/TikTok editor who you're looking for.</li>
+        <li class="fade-in-up">I have edited some S-graded movies.</li>
+        <li class="fade-in-up">I do reels with contemporary effects.</li>
+        <li class="fade-in-up">I have knowledge in color grading and can trim raw footage into custom content without losing context.</li>
+        <li class="fade-in-up">I make good thumbnail images by the way.</li>
       </ul>
     </div>
 
+    <!-- Contact -->
     <div class="box">
-      <p>For Contact</p>
+      <p><strong>For Contact:</strong></p>
       <ul>
         <li class="fade-in-up">Email: <a href="mailto:crowefex@gmail.com">crowefex@gmail.com</a></li>
         <li class="fade-in-up">Instagram: <a href="https://www.instagram.com/crow.efex?igsh=MTM2NGxqdXMzMzM5YQ==" target="_blank">@crow.efex</a></li>
@@ -243,40 +215,40 @@
         Your browser does not support the video tag.
       </video>
 
-      <!-- FIXED SLIDER COMPONENT -->
+      <!-- THREE-IMAGE SLIDER COMPONENT -->
       <div class="slider-frame">
         <div class="slider-wrapper">
-          <!-- Slide 1: final taira with watermark.png -->
+          <!-- Slide 1 -->
           <div class="slide">
-            <img src="https://raw.githubusercontent.com/crowefex/Reportfolio/0ad3f8b2a1542699c59b46660eb2e286f5be3a42/final%20taira%20with%20watermark.png" alt="final taira with watermark.png">
+            <img src="https://raw.githubusercontent.com/crowefex/Reportfolio/0ad3f8b2a1542699c59b46660eb2e286f5be3a42/final%20taira%20with%20watermark.png" alt="final taira with watermark">
             <div class="slide-caption">Taira-no-Atsumori Artwork Showcase</div>
           </div>
-          <!-- Slide 2: Hanagami watermarked.jpg -->
+          <!-- Slide 2 -->
           <div class="slide">
-            <img src="https://raw.githubusercontent.com/crowefex/Reportfolio/e83c8319af04c6fdac379da55f31c52c14ff30c8/Hanagami%20watermarked.png" alt="Hanagami watermarked.jpg">
-            <div class="slide-caption">Hanagami Danjo-No-Jo Arakage Sanshouo</div>
+            <img src="https://raw.githubusercontent.com/crowefex/Reportfolio/e83c8319af04c6fdac379da55f31c52c14ff30c8/Hanagami%20watermarked.png" alt="Hanagami watermarked">
+            <div class="slide-caption">Hanagami Danjo-No-Jo Design</div>
           </div>
-          <!-- Slide 3: Katsudo finalx3.jpg -->
+          <!-- Slide 3 -->
           <div class="slide">
-            <img src="https://raw.githubusercontent.com/crowefex/Reportfolio/d9b6b60d635016da5ac20cfa8007654d44008707/Katsudo%20finalx3.png" alt="Katsudo finalx3.jpg">
-            <div class="slide-caption">Katsuda-Testsu Evening Bijinga Design</div>
+            <img src="https://raw.githubusercontent.com/crowefex/Reportfolio/d9b6b60d635016da5ac20cfa8007654d44008707/Katsudo%20finalx3.png" alt="Katsudo finalx3">
+            <div class="slide-caption">Katsuda-Testsu Evening Composition</div>
           </div>
         </div>
       </div>
 
-      <!-- Images -->
+      <!-- Footer Banner Image -->
       <img src="https://raw.githubusercontent.com/crowefex/Ptfo-assets/main/Banner5.jpg" alt="Work Image 1" class="fade-in-up responsive-img" style="width: 100%; margin-top: 20px; border-radius: 10px;" />
     </div>
   </div>
 
   <script>
-    // Trigger fade-in-up animation smoothly on DOM content load
-    window.addEventListener('DOMContentLoaded', () => {
+    // Trigger fade-in-up animation on load
+    window.addEventListener('load', () => {
       document.querySelectorAll('.fade-in-up').forEach(el => {
         el.classList.remove('fade-in-up');
         setTimeout(() => {
           el.classList.add('fade-in-up');
-        }, 15);
+        }, 10);
       });
     });
   </script>
